@@ -1,0 +1,183 @@
+/* ========= Theming (Light / Dark) via CSS variables ========= */
+:root {
+    --bg: #f7f9fc;
+    --text: #0f172a;
+    --muted: #475569;
+    --card: #ffffff;
+    --border: #e5e7eb;
+
+    --primary: #e50914;
+    /* Netflix-like red */
+    --primary-contrast: #ffffff;
+    --accent: #5468ff;
+    /* vibrant indigo accent */
+
+    /* Header & hero */
+    --header-bg: rgba(255, 255, 255, 0.85);
+    --header-text: red;
+    --header-border: rgba(15, 23, 42, 0.08);
+    --hero-overlay: rgba(0, 0, 0, 0.35);
+}
+
+.dark-theme {
+    --bg: #0b1120;
+    --text: #e5e7eb;
+    --muted: #cbd5e1;
+    --card: #0f172a;
+    --border: #243244;
+
+    --primary: #3b9aff;
+    /* brighter red for dark bg */
+    --primary-contrast: #0b1120;
+    --accent: #ffD700;
+    /* cyan pop */
+
+    --header-bg: rgba(9, 14, 25, 0.75);
+    --header-text: rgb(252, 7, 7);
+    --header-theme: black;
+    --header-border: rgba(148, 163, 184, 0.15);
+    --hero-overlay: rgba(0, 0, 0, 0.645);
+}
+
+/* Apply base colors */
+body.light-theme,
+body.dark-theme {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ========= Header (dynamic) ========= */
+.vidlab-navbar {
+    background: var(--header-bg);
+    color: var(--header-theme);
+    border-bottom: 1px solid var(--header-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* Brand + slogan layout */
+.brand-wrap {
+    position: relative;
+    display: inline-block;
+    line-height: 2;
+}
+
+.brand-text {
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    font-size: clamp(26px, 4vw, 34px);
+    color: var(--header-text);
+}
+
+.brand-slogan {
+    position: relative;
+    right: 0;
+    /* aligns to the top-right corner of the word "VidLab" */
+    top: -0.8rem;
+    /* sits above the first letter visually */
+    font-size: clamp(10px, 1.3vw, 12px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #ffD700;
+    text-transform: uppercase;
+    opacity: 0.90;
+}
+
+/* Mobile fallback: stack the slogan under brand to avoid overlap on very small screens */
+@media (max-width: 576px) {
+    .brand-slogan {
+        position: static;
+        display: block;
+        margin-top: 2px;
+        text-align: left;
+    }
+}
+
+/* Theme toggle button (icon-only) */
+.theme-toggle-btn {
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    padding: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+    color: var(--header-border);
+    border-color: var(--header-theme);
+    opacity: 0.9;
+}
+
+.theme-toggle-btn:hover {
+    opacity: 1;
+}
+
+/* ========= Hero (image with overlay) ========= */
+.hero-img {
+    position: relative;
+    min-height: 64vh;
+    background-image: linear-gradient(var(--hero-overlay), var(--hero-overlay)),
+        url("https://images.unsplash.com/photo-1581905764498-f1b60bae941a?q=80&w=1600&auto=format&fit=crop");
+    /* replace if you want */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero-title {
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.hero-subtitle {
+    font-size: clamp(16px, 2.4vw, 22px);
+    font-weight: 600;
+    opacity: 0.95;
+    margin-bottom: 0.25rem;
+}
+
+.hero-tagline {
+    font-size: clamp(14px, 2vw, 18px);
+    color: #f8fafc;
+    opacity: 0.92;
+}
+
+/* ========= Common UI ========= */
+.section-title {
+    color: var(--text);
+}
+
+/* Cards / tables / etc. pick up variables automatically */
+.card,
+.category-card,
+.table {
+    background: var(--card);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+.category-icon {
+    font-size: 36px;
+}
+
+/* Buttons should read well in both themes */
+.btn-danger {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-contrast);
+}
+
+.btn-outline-light {
+    color: var(--header-text);
+    border-color: var(--header-text);
+}

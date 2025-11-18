@@ -1,0 +1,285 @@
+/* ---------------------- LIGHT & DARK MODE ---------------------- */
+.light-mode {
+    --sidebar-bg: #f8f9fa;
+    --sidebar-text: #333;
+    --main-bg: #fff;
+    --header-bg: #fff;
+    --card-bg: #fff;
+    --popup-bg: #fff;
+    --popup-text: #333;
+
+    /* pills */
+    --pill-text: #212529;
+    --pill-border: rgba(0, 0, 0, 0.08);
+    --pill-active-bg: #212529;
+    --pill-active-text: #fff;
+    --pill-hover-bg: rgba(0, 0, 0, 0.06);
+}
+
+.dark-mode {
+    --sidebar-bg: #1e1e2f;
+    --sidebar-text: #ddd;
+    --main-bg: #121212;
+    --header-bg: #1e1e2f;
+    --card-bg: #2a2a3d;
+    --popup-bg: #2a2a3d;
+    --popup-text: #fff;
+
+    /* pills */
+    --pill-text: #e6e6e6;
+    --pill-border: rgba(255, 255, 255, 0.06);
+    --pill-active-bg: #f1f1f1;
+    --pill-active-text: #121212;
+    --pill-hover-bg: rgba(255, 255, 255, 0.03);
+}
+
+/* ---------------------- DASHBOARD LAYOUT ---------------------- */
+.dashboard {
+    display: flex;
+    height: 100vh;
+    transition: all 0.3s ease;
+}
+
+/* Sidebar width stability */
+.sidebar.open {
+    width: 220px;
+
+}
+
+.sidebar.collapsed {
+    width: 70px;
+
+}
+
+.main-content {
+    flex-grow: 1;
+    min-width: 0;
+    background: var(--main-bg);
+    transition: all 0.3s ease;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    min-height: 100vh;
+    padding: 10px;
+    transition: width 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.sidebar .toggle-btn {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    color: inherit;
+    cursor: pointer;
+}
+
+.sidebar .nav-item {
+    padding: 12px 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sidebar .nav-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+/* Header */
+.dashboard-header {
+    background: var(--header-bg);
+    border-bottom: 1px solid #ddd;
+    color: var(--sidebar-text);
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+.search-bar input {
+    width: 280px;
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    width: 380px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------------- PROFILE & NOTIFICATIONS ---------------------- */
+.profile-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-popup {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: var(--popup-bg);
+    color: var(--popup-text);
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profile-dropdown:hover .profile-popup {
+    display: block;
+}
+
+.notification {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-popup {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background: var(--popup-bg);
+    color: var(--popup-text);
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 250px;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.notification:hover .notification-popup {
+    display: block;
+}
+
+/* ---------------------- VIDEO GRID ---------------------- */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.video-card {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    color: var(--sidebar-text);
+    transition: transform 0.2s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-card iframe {
+    width: 100%;
+    height: 200px;
+}
+
+/* ---------------------- CATEGORY BAR (SLIDE MODE) ---------------------- */
+.category-wrap {
+    position: relative;
+    margin: 0 12px 16px 12px;
+    background: var(--header-bg);
+    border-radius: 8px;
+    padding: 4px 0px;
+    /* space for arrows */
+
+}
+
+.category-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* ✅ no scrollbar */
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    margin: 10px;
+}
+
+.category-pill {
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: transparent;
+    border: 1px solid var(--pill-border);
+    color: var(--pill-text);
+    transition: all 0.2s ease;
+}
+
+.category-pill:hover {
+    background: var(--pill-hover-bg);
+}
+
+.category-pill.active {
+    background: var(--pill-active-bg);
+    color: var(--pill-active-text);
+}
+
+/* ---------------------- CHEVRON ARROWS ---------------------- */
+.cat-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    /* ✅ no background */
+    color: var(--sidebar-text);
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cat-scroll-btn:hover {
+    transform: translateY(-50%) scale(1.2);
+    opacity: 0.8;
+}
+
+.cat-scroll-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.cat-scroll-btn.left {
+    left: -30px;
+    padding: 2px;
+}
+
+.cat-scroll-btn.right {
+    right: -30px;
+    padding: 2px;
+}
+
+/* ---------------------- RESPONSIVE ---------------------- */
+@media (max-width: 768px) {
+    .search-bar input {
+        width: 200px;
+    }
+
+    .search-bar input:focus {
+        width: 260px;
+    }
+
+    .category-wrap {
+        padding: 6px 30px;
+    }
+
+    .cat-scroll-btn {
+        font-size: 1.3rem;
+    }
+}
